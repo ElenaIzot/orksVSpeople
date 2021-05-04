@@ -8,14 +8,14 @@ class Warrior {
         this.damage = damage;
         this.hitPoints = hitPoints;
     }
-    attack(defender: Warrior):void {
+    attack(defender: Warrior): void {
         defender.hitPoints -= this.damage;
     }
 }
 
 class Battle {
     private teams: Warrior[][];
-    private messages: Array<string>;
+    private messages: string[];
     constructor() {
         this.teams = [
             [new Warrior('Ланселот', 3, 25), new Warrior('Сокол', 3, 25), new Warrior('Храбрый рыцарь', 3, 25), new Warrior('Великий воин', 3, 25)],
@@ -25,8 +25,8 @@ class Battle {
     }
 
     run() {
-        let attackTeam: Warrior[] = this.teams[0];
-        let defendTeam: Warrior[] = this.teams[1];
+        let attackTeam = this.teams[0];
+        let defendTeam = this.teams[1];
 
         while (!this.isGameOver()) {
             const attacker = this.choose(attackTeam.filter(warrior => warrior.hitPoints > 0));
@@ -40,30 +40,30 @@ class Battle {
         };
     }
 
-    private choose <T> (array: T[]):T {
+    private choose<T>(array: T[]):T {
         const index = Math.floor(Math.random() * (array.length))
         return array[index];
     }
 
-    private isGameOver() {
+    private isGameOver(): boolean{
         let dead = this.teams[0].filter(e => e.hitPoints <= 0);
         if (dead.length == this.teams[0].length) {
             return true;
         }
 
-        let dead2 = this.teams[1].filter(e => e.hitPoints <= 0); {
+        let dead2 = this.teams[1].filter(e => e.hitPoints <= 0); 
             if (dead2.length == this.teams[1].length) {
                 return true;
             }
-        }
+        
     };
 }
 
-const gameFirst: Battle = new Battle();
+const gameFirst = new Battle();
 gameFirst.run();
 console.log('!!!Game1 закончена!!!');
 
-const gameSecond: Battle = new Battle();
+const gameSecond = new Battle();
 gameSecond.run();
 console.log('!!!Game2 закончена!!!');
 
