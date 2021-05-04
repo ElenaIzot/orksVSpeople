@@ -6,33 +6,27 @@ class Warrior {
         this.damage = damage;
         this.hitPoints = hitPoints;
     }
-
     attack(defender) {
         defender.hitPoints -= this.damage;
     }
 }
 
-const messages = ['откусывает ухо', 'пинает по голове', 'отрубает палец на ноге', 'дергает за волосы', 'выбил зуб'];
-
-let player1 = new Warrior('Ланселот', 3, 25, 'attackTeam');
-let player2 = new Warrior('Сокол', 3, 25, 'attackTeam');
-let player3 = new Warrior('Храбрый рыцарь', 3, 25, 'attackTeam');
-let player4 = new Warrior('Великий воин', 3, 25, 'attackTeam');
-
-let player5 = new Warrior('Черная рука', 6, 20, 'defendTeam');
-let player6 = new Warrior('Кривой рог', 6, 20, 'defendTeam');
-let player7 = new Warrior('Головорез', 6, 20, 'defendTeam');
-let player8 = new Warrior('Хромой', 6, 20, 'defendTeam');
-
-let attackTeam = [player1, player2, player3, player4];
-let defendTeam = [player5, player6, player7, player8];
-
 class Battle {
     constructor() {
-        this.attackTeam = [player1, player2, player3, player4];
-        this.defendTeam = [player5, player6, player7, player8];
-        this.messages = messages;
-        this.teams = [attackTeam, defendTeam];
+        this.player1 = new Warrior('Ланселот', 3, 25);
+        this.player2 = new Warrior('Сокол', 3, 25);
+        this.player3 = new Warrior('Храбрый рыцарь', 3, 25);
+        this.player4 = new Warrior('Великий воин', 3, 25);
+
+        this.player5 = new Warrior('Черная рука', 6, 20);
+        this.player6 = new Warrior('Кривой рог', 6, 20);
+        this.player7 = new Warrior('Головорез', 6, 20);
+        this.player8 = new Warrior('Хромой', 6, 20);
+
+        this.attackTeam = [this.player1, this.player2, this.player3, this.player4];
+        this.defendTeam = [this.player5, this.player6, this.player7, this.player8];
+        this.messages = ['откусывает ухо', 'пинает по голове', 'отрубает палец на ноге', 'дергает за волосы', 'выбил зуб'];
+        this.teams = [this.attackTeam, this.defendTeam];
     }
 
     run() {
@@ -75,8 +69,8 @@ class Battle {
 
 let game1 = new Battle();
 game1.run();
-console.log('game1 закончена');
+console.log('!!!Game1 закончена!!!');
 
 let game2 = new Battle();
 game2.run();
-console.log('game2 закончена');
+console.log('!!!Game2 закончена!!!');
