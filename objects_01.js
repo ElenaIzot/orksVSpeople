@@ -22,24 +22,18 @@ class Battle {
     }
 
     run() {
-        const attackTeam = this.teams[0];
-        const defendTeam = this.teams[1];
-        let currentTeam = attackTeam;
+        let attackTeam = this.teams[0];
+        let defendTeam = this.teams[1];
 
         while (!this._isGameOver()) {
-            const attacker = this._choose(attackTeam);
-            const defender = this._choose(defendTeam);
+            const attacker = this._choose(attackTeam.filter(warrior => warrior.hitPoints > 0));
+            const defender = this._choose(defendTeam.filter(warrior => warrior.hitPoints > 0));
             const msg = this._choose(this.messages);
 
-            if (currentTeam === attackTeam) {
-                console.log(attacker.name, msg, defender.name, defender.hitPoints);
-                defender.hitPoints -= attacker.damage;
-                currentTeam = defendTeam;
-            } else {
-                console.log(defender.name, msg, attacker.name, attacker.hitPoints);
-                attacker.hitPoints -= defender.damage;
-                currentTeam = attackTeam;
-            }
+            console.log(attacker.name, msg, defender.name, defender.hitPoints);
+            attacker.attack(defender);
+
+            [attackTeam, defendTeam] = [defendTeam, attackTeam];
         };
     }
 
